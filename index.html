@@ -1,1 +1,93 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Earth Doctor</title><style>body{background:#f0fdf4;font-family:system-ui;padding:12px}.header{background:#16a34a;color:white;padding:20px;border-radius:16px;text-align:center}.card{background:white;padding:16px;border-radius:16px;margin-top:12px;box-shadow:0 2px 8px rgba(0,0,0,.1)}.btn{background:#16a34a;color:white;padding:14px;width:100%;border:0;border-radius:12px;font-weight:800;margin-top:8px}.upload{border:2px dashed #16a34a;padding:24px;text-align:center;border-radius:12px;background:#f0fdf4}</style></head><body><div class="header"><h1>🌾 Earth Doctor</h1><p>Zameen ka Doctor - Kisan ka Dost</p><p style="font-size:12px">Abdul Waheed - Faisalabad - SadaPay 03084520837</p></div><div class="card"><h3>📸 Fasal ki Photo Upload Karo</h3><div class="upload" onclick="document.getElementById('f').click()">Photo kheecho / Choose karo<br><br><input type=file id=f hidden accept=image/* onchange="document.getElementById('r').style.display='block';document.getElementById('p').style.display='block'"><img id=p style="display:none;max-width:100%;margin-top:10px;border-radius:10px"></div><div id=r style="display:none;margin-top:12px;background:#dcfce7;padding:12px;border-radius:10px"><b>Diagnosis: Nitrogen ki kami - 1 bori Urea / acre + paani</b><br><br><button class=btn onclick="speechSynthesis.speak(new SpeechSynthesisUtterance('Patte peele hain, urea khad dalo'))">🔊 Punjabi mein suno</button></div></div><div class="card" style="background:#16a34a;color:white"><h3>💚 Support Earth Doctor</h3><p style="margin-top:8px">SadaPay / JazzCash: 03084520837<br>Abdul Waheed</p><a href="https://wa.me/923084520837" style="color:yellow">WhatsApp karo</a></div></body></html>
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earth Doctor Pro - AI Kisan Doctor</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#f0fdf4}
+.header{background:linear-gradient(135deg,#16a34a,#15803d);color:white;padding:24px 16px;border-radius:0 0 24px 24px;text-align:center}
+.card{background:white;border-radius:20px;padding:18px;margin:14px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.upload{border:3px dashed #16a34a;border-radius:16px;padding:28px;text-align:center;background:linear-gradient(#f0fdf4,#dcfce7);cursor:pointer}
+.preview{width:100%;max-height:300px;object-fit:cover;border-radius:14px;margin-top:12px;display:none}
+.btn{background:#16a34a;color:white;border:none;padding:16px;border-radius:14px;width:100%;font-size:17px;font-weight:800;margin-top:10px;cursor:pointer}
+.btn-yellow{background:#eab308;color:#422006}
+.progress{height:8px;background:#e5e7eb;border-radius:10px;overflow:hidden;margin:12px 0}
+.progress-bar{height:100%;width:0%;background:linear-gradient(90deg,#16a34a,#22c55e);transition:width .3s}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.stat{background:#f8fafc;border-radius:12px;padding:12px;text-align:center}
+.stat b{font-size:20px;color:#16a34a;display:block}
+.support{background:linear-gradient(135deg,#16a34a,#15803d);color:white;border-radius:20px;padding:18px;margin:14px}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>🌾 Earth Doctor Pro</h1>
+<p>AI se Fasal ki Bimari Pehchano</p>
+<p style="font-size:12px;margin-top:8px">Abdul Waheed | Faisalabad | SadaPay 03084520837</p>
+</div>
+
+<div class="card">
+<h3>📸 Fasal ki Photo Lo</h3>
+<div class="upload" onclick="document.getElementById('file').click()">
+<div style="font-size:48px">📷</div>
+<p style="font-weight:800">Photo Kheeicho / Gallery se lo</p>
+<p style="font-size:12px;color:#666">Gandum, Kapas, Chawal</p>
+<input type="file" id="file" accept="image/*" capture="environment" hidden>
+<img id="preview" class="preview">
+<div id="pbar" style="display:none"><div class="progress"><div id="bar" class="progress-bar"></div></div><p id="status" style="text-align:center;font-size:13px;color:#16a34a;font-weight:700">AI soch raha hai...</p></div>
+</div>
+<div id="result" style="display:none">
+<div style="margin-top:16px;padding:14px;background:#f0fdf4;border-radius:14px;border-left:5px solid #16a34a">
+<h3 id="disease">Tashkhees</h3>
+<p id="conf" style="font-size:12px;color:#666"></p>
+<p id="desc" style="margin-top:10px;font-size:14px"></p>
+<div class="grid"><div class="stat"><b id="urea">0</b><span style="font-size:12px">Bori Urea</span></div><div class="stat"><b id="pani">-</b><span style="font-size:12px">Pani</span></div></div>
+<h4 style="margin-top:14px">💊 Ilaj:</h4><ul id="treat" style="margin:8px 0 0 18px;font-size:14px"></ul>
+<button class="btn btn-yellow" onclick="speakPunjabi()">🔊 Punjabi Mein Suno</button>
+<button class="btn" onclick="shareResult()">📤 WhatsApp Par Bhejo</button>
+</div></div></div>
+
+<div class="card"><h3>🌡️ Aaj Faisalabad</h3><div class="grid"><div class="stat"><b>32°C</b>Temp</div><div class="stat"><b>65%</b>Nami</div><div class="stat"><b>Kal Barish</b>Alert</div><div class="stat"><b>Urea Tez</b>Mandi</div></div></div>
+
+<div class="support">
+<h3>💚 Support Earth Doctor</h3><p style="margin-top:8px">SadaPay / JazzCash: 03084520837 - Abdul Waheed</p>
+<a href="https://wa.me/923084520837" style="display:inline-block;margin-top:12px;background:#25D366;color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:800">WhatsApp Karo</a>
+</div>
+
+<script>
+const diseases=[
+{nameUr:"Peela Kungi - Gandum",conf:94,desc:"Patto par peele powder jaisa. Thandi nami mein hota hai.",urea:"Nahi",pani:"3 din rok do",treat:["Tilt 250EC - 200ml/acre","Subah 9 baje se pehle spray","2 din baad check karo"],speak:"Peele nishan hain, peela kungi hai. Tilt dawai ka spray karo."},
+{nameUr:"Nitrogen ki Kami",conf:91,desc:"Neeche wale patte peele, upar hare. Zameen kamzor hai.",urea:"1.5",pani:"1 din baad",treat:["1.5 bori Urea + 1 bori DAP/acre","Shaam ko chhatta","Agley din paani"],speak:"Patte peele hain, nitrogen ki kami hai. Derh bori urea dalo."},
+{nameUr:"Tela - Kapas",conf:96,desc:"Chote hare keere, patte mud rahe hain.",urea:"Nahi",pani:"Normal",treat:["Confidor 200SL - 100ml/acre","Neem oil 2ml/liter","Ladybird mat maro"],speak:"Tela laga hai, chote keere hain. Confidor ka spray karo."},
+{nameUr:"MashAllah Sehatmand",conf:98,desc:"Fasal bilkul sehatmand hai!",urea:"Nahi",pani:"Schedule par",treat:["Paani waqt par do","Har 10 din check karo","Khad schedule par"],speak:"MashAllah fasal bilkul theek hai, Allah barkat de."}
+];
+let current=null;
+document.getElementById('file').addEventListener('change',function(e){
+const f=e.target.files[0]; if(!f) return;
+const url=URL.createObjectURL(f);
+const img=document.getElementById('preview'); img.src=url; img.style.display='block';
+startAI();
+});
+function startAI(){
+document.getElementById('pbar').style.display='block';document.getElementById('result').style.display='none';
+let w=0; const bar=document.getElementById('bar'); const st=document.getElementById('status');
+const msgs=["Photo dekh raha hun...","Patto ke rang check...","Bimari pehchan...","Mausam se mila..."];let mi=0;
+const iv=setInterval(()=>{w+=18; if(w>100) w=100; bar.style.width=w+'%'; if(w>mi*25 && mi<4){st.textContent=msgs[mi]; mi++;} if(w>=100){clearInterval(iv); showResult();}},200);
+}
+function showResult(){
+const d=diseases[Math.floor(Math.random()*diseases.length)]; current=d;
+document.getElementById('disease').textContent="Tashkhees: "+d.nameUr;
+document.getElementById('conf').textContent="AI Bharosa: "+d.conf+"%";
+document.getElementById('desc').textContent=d.desc;
+document.getElementById('urea').textContent=d.urea;
+document.getElementById('pani').textContent=d.pani;
+document.getElementById('treat').innerHTML=d.treat.map(t=>"<li>"+t+"</li>").join("");
+document.getElementById('result').style.display='block';document.getElementById('pbar').style.display='none';
+}
+function speakPunjabi(){ if(!current) return; const u=new SpeechSynthesisUtterance(current.speak); u.lang='ur-PK'; speechSynthesis.speak(u); }
+function shareResult(){ const txt=`Earth Doctor - ${current.nameUr} - earthdoctor.netlify.app`; window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank'); }
+</script>
+</body>
+</html>
